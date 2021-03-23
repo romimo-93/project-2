@@ -50,5 +50,5 @@ Playing off of Andrews world tour idea, and since the Olympics are this summer, 
 1. looking at several APIs for Crypto currency and determining what cryptos currencies are more volatile then others, maybe what they are used for.
 ----
 ## Breweries around the world
-1. we can map breweries around the world and see what types of beer are more common in specific regions. could be fun. here is the link for the api, its free nad no auth code needed. 
+1. we can map breweries around the US and see what types of beer are more common in specific states. could be fun. here is the link for the api, its free nad no auth code needed. 
 2. https://api.openbrewerydb.org/breweries
