@@ -45,5 +45,7 @@ Playing off of Andrews world tour idea, and since the Olympics are this summer, 
 ### User Actions
 * Select different categories to order the animation by 
 
-
+## Crypto Currency
+#### How
+1. looking at several APIs for Crypto currency and determining what cryptos currencies are more volatile then others, maybe what they are used for.
 ----
