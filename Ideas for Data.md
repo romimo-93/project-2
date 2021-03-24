@@ -70,4 +70,6 @@ Playing off of Andrews world tour idea, and since the Olympics are this summer, 
 ## Airline accidents 
 1. We could look at where around the globe airline accidents occur, and if there are any trends on types of airline or countries./regions they occur in. 
 2. Could determine what airlines are most and least safe. 
-3. https://www.kaggle.com/prathamsharma123/aviation-accidents-and-incidents-ntsb-faa-waas
+3. have user input airpork code like JKF or LAX and have it filter a data table specifally for that. 
+4. d3 visualization of world globe that can show where the airline wrecks are around the world based on lat and long. 
+5. https://www.kaggle.com/prathamsharma123/aviation-accidents-and-incidents-ntsb-faa-waas
