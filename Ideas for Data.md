@@ -63,3 +63,11 @@ Playing off of Andrews world tour idea, and since the Olympics are this summer, 
 ## International Tourism Demographics
 ### How
 1. This dataset provides data on International inbound tourists (overnight visitors), International outbound tourists, and International tourism expenditures for every (or nearly every) country from 1960 to 2020.  There are honestly a million things I feel like we could do with this data, it's a super good source and would definitely provide a lot of good visualizations with any of the data we choose. https://www.kaggle.com/ayushggarg/international-tourism-demographics
+
+## California Housing Prices
+1. https://www.kaggle.com/camnugent/california-housing-prices
+
+## Airline accidents 
+1. We could look at where around the globe airline accidents occur, and if there are any trends on types of airline or countries./regions they occur in. 
+2. Could determine what airlines are most and least safe. 
+3. https://www.kaggle.com/prathamsharma123/aviation-accidents-and-incidents-ntsb-faa-waas
