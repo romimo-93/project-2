@@ -10,9 +10,17 @@
 #### link https://www.kaggle.com/prathamsharma123/aviation-accidents-and-incidents-ntsb-faa-waas
 Possible Calendar View
 ### Questions to consider for proposal
-1. Who is out audience?
-2. what message do we want to get across?
-3. 1-2 pages of overall descprition of what we will be doing. 
-4. What the data will be representing. 
-5. What types of visualizations we will use. 
-6. Who will be interested, and who will this be presented to?
+1. Who is out audience? General Public, Travelers, FAA, DSB, Specific Airlines.
+2. Which decision is going to be made and when? General public/travelers before they go on a flight. FAA, DSB, Airlines while determining regulations and flight paths. 
+3. Why is it important? Could save lives, be more informed. Viewing trends that can minimize crashes in the future. 
+4. What actions can be taken? Avoid specific airlines. Training for pilots based on times of the year wrecks occur most?
+---
+### Requirements:
+1. Database: MongoDB or SQL --> https://cloud.google.com/sql/docs --> Jenny/Andrew
+2. "A custom "creative" D3.js Project"
+3.  New JS library --> TBD
+4.  menus, dropdowns, textboxes --> Table with user input for airline. 
+
+### Vizualizations
+1. Calendar view --> https://observablehq.com/@d3/calendar-view --> when we zoom in have it run a different file (animation) with new data based on the specific day that is clicked on.
+2. Global view --> https://observablehq.com/@d3/world-tour
