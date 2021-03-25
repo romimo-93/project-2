@@ -10,7 +10,7 @@
 #### link https://www.kaggle.com/prathamsharma123/aviation-accidents-and-incidents-ntsb-faa-waas
 Possible Calendar View
 ### Questions to consider for proposal
-1. Who is out audience? 
+1. Who is our audience? 
 * General Public
 * Travelers, FAA, DSB,
 * Specific Airlines.
