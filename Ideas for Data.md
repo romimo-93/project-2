@@ -73,3 +73,10 @@ Playing off of Andrews world tour idea, and since the Olympics are this summer, 
 3. have user input airpork code like JKF or LAX and have it filter a data table specifally for that. 
 4. d3 visualization of world globe that can show where the airline wrecks are around the world based on lat and long. 
 5. https://www.kaggle.com/prathamsharma123/aviation-accidents-and-incidents-ntsb-faa-waas
+
+
+----
+
+##  COVID-19 World Vaccination Progress
+we could use this to track how many people got vaccination each country.
+https://www.kaggle.com/gpreda/covid-world-vaccination-progress
