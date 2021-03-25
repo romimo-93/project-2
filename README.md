@@ -29,7 +29,8 @@ Possible Calendar View
 1. Database: MongoDB or SQL --> https://cloud.google.com/sql/docs --> Jenny/Andrew
 2. "A custom "creative" D3.js Project"
 3.  New JS library --> TBD
-4.  menus, dropdowns, textboxes --> Table with user input for airline. 
+4.  menus, dropdowns, textboxes
+* Table with user input for airline. 
 
 ### Vizualizations
 1. Calendar view --> https://observablehq.com/@d3/calendar-view
