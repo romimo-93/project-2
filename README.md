@@ -9,6 +9,10 @@
 4. d3 visualization of world globe that can show where the airline wrecks are around the world based on lat and long.
 #### link https://www.kaggle.com/prathamsharma123/aviation-accidents-and-incidents-ntsb-faa-waas
 Possible Calendar View
-### Questions to consider?
+### Questions to consider for proposal
 1. Who is out audience?
 2. what message do we want to get across?
+3. 1-2 pages of overall descprition of what we will be doing. 
+4. What the data will be representing. 
+5. What types of visualizations we will use. 
+6. Who will be interested, and who will this be presented to?
