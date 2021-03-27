@@ -27,7 +27,7 @@ User Action - click calendar square: [World Animation](https://observablehq.com/
     * Viewing trends that can minimize crashes in the future. 
 5. What actions can be taken? 
     * Avoid specific airlines
-    * Training for pilots based on times of the year wrecks occur most.
+    * Training for pilots based on accident reports.
 ---
 ### Requirements:
 1. Database: MongoDB or SQL --> https://cloud.google.com/sql/docs --> Jenny/Andrew
