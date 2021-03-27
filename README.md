@@ -1,6 +1,4 @@
-# project-2
-
-## Airline accidents
+# Airline accidents
 1. Where around the globe do airline accidents occur most
 2. Are there any trends on types of airline or countries/regions they occur in.
 3. Could determine what airlines are most and least safe.
