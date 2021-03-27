@@ -3,10 +3,11 @@
 ![image](https://user-images.githubusercontent.com/73146401/111664589-2bef1180-87cf-11eb-9e81-c57b077bb4c4.png)
 
 ## Airline accidents
-1. We could look at where around the globe airline accidents occur, and if there are any trends on types of airline or countries./regions they occur in.
-2. Could determine what airlines are most and least safe.
-3. have user input airpork code like JKF or LAX and have it filter a data table specifally for that.
-4. d3 visualization of world globe that can show where the airline wrecks are around the world based on lat and long.
+1. Where around the globe do airline accidents occur most
+2. Are there any trends on types of airline or countries/regions they occur in.
+3. Could determine what airlines are most and least safe.
+4. Have user input an airport code like JKF or LAX and have it filter a data table specifically for that.
+5. d3 visualization of world globe that can show where the airline wrecks are around the world based on lat and long.
 
 ### Proposal
 
@@ -32,7 +33,7 @@ User Action - click calendar square: [World Animation](https://observablehq.com/
 ### Requirements:
 1. Database: MongoDB or SQL --> https://cloud.google.com/sql/docs --> Jenny/Andrew
 2. "A custom "creative" D3.js Project"
-3.  New JS library --> TBD
+3.  New JS library --> TBD (i.e. [animeJS](https://animejs.com/) or [premonish](https://mathisonian.github.io/premonish/))
 4.  menus, dropdowns, textboxes
     * Table with user input for airline. 
 
