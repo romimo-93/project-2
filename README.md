@@ -8,10 +8,10 @@
 3. have user input airpork code like JKF or LAX and have it filter a data table specifally for that.
 4. d3 visualization of world globe that can show where the airline wrecks are around the world based on lat and long.
 
-### Questions to consider for proposal
+### Proposal
 
-[Airline Dataset](https://www.kaggle.com/prathamsharma123/aviation-accidents-and-incidents-ntsb-faa-waas)
-Initial View: [Calendar View](https://observablehq.com/@d3/calendar-view)
+[Airline Dataset](https://www.kaggle.com/prathamsharma123/aviation-accidents-and-incidents-ntsb-faa-waas)  
+Initial View: [Calendar View](https://observablehq.com/@d3/calendar-view)  
 User Action - click calendar square: [World Animation](https://observablehq.com/@d3/world-tour)
 
 1. Who is our audience? 
