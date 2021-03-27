@@ -1,7 +1,5 @@
 # project-2
 
-![image](https://user-images.githubusercontent.com/73146401/111664589-2bef1180-87cf-11eb-9e81-c57b077bb4c4.png)
-
 ## Airline accidents
 1. Where around the globe do airline accidents occur most
 2. Are there any trends on types of airline or countries/regions they occur in.
