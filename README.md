@@ -32,7 +32,7 @@ User Action - click calendar square: [World Animation](https://observablehq.com/
 ---
 ### Requirements:
 1. Database: MongoDB or SQL --> https://cloud.google.com/sql/docs --> Jenny/Andrew
-2. "A custom "creative" D3.js Project"
+2. A custom "creative" D3.js Project
 3.  New JS library --> TBD (i.e. [animeJS](https://animejs.com/) or [premonish](https://mathisonian.github.io/premonish/))
 4.  menus, dropdowns, textboxes
     * Table with user input for airline. 
