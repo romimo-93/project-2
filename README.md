@@ -30,10 +30,11 @@ User Action - click calendar square: [World Animation](https://observablehq.com/
 1. Database: MongoDB or SQL --> https://cloud.google.com/sql/docs --> Jenny/Andrew
 2. A custom "creative" D3.js Project
 3.  New JS library --> TBD (i.e. [animeJS](https://animejs.com/) or [premonish](https://mathisonian.github.io/premonish/))
-4.  menus, dropdowns, textboxes
-    * Table with user input for airline. 
+
 
 ### Vizualizations
 1. Calendar view --> https://observablehq.com/@d3/calendar-view
     * when we zoom in have it run a different file (animation) with new data based on the specific day that is clicked on.
 2. Global view --> https://observablehq.com/@d3/world-tour
+3. menus, dropdowns, textboxes
+    * Table with user input for airline. 
