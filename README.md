@@ -27,14 +27,17 @@ User Action - click calendar square: [World Animation](https://observablehq.com/
     * Training for pilots based on accident reports.
 ---
 ### Requirements:
-1. Database: MongoDB or SQL --> https://cloud.google.com/sql/docs --> Jenny/Andrew
+1. Database: MongoDB or SQL --> https://cloud.google.com/sql/docs --> **Jenny**
 2. A custom "creative" D3.js Project
 3.  New JS library --> TBD (i.e. [animeJS](https://animejs.com/) or [premonish](https://mathisonian.github.io/premonish/))
 
 
 ### Vizualizations
-1. Calendar view --> https://observablehq.com/@d3/calendar-view
+1. Calendar view --> https://observablehq.com/@d3/calendar-view --> **Andrew**
     * when we zoom in have it run a different file (animation) with new data based on the specific day that is clicked on.
-2. Global view --> https://observablehq.com/@d3/world-tour
-3. menus, dropdowns, textboxes
+2. Global view --> https://observablehq.com/@d3/world-tour --> **Tanlin**
+3. menus, dropdowns, textboxes --> **Romi**
     * Table with user input for airline. 
+4. Data comparisons/ side by side comparisons with bar,scatter --> **Jenny**
+    * Comparisons of airline(groupby) and fatalities
+  
