@@ -42,11 +42,11 @@ User Action - click calendar square: [World Animation](https://observablehq.com/
     * Comparisons of airline(groupby) and fatalities
 
 ### Time Line
-* Complete Flask: March 31st
-* Complete SQL: April 1st
+* Complete Flask: **March 31st**
+* Complete SQL: **April 1st**
 * Visualizations worked on in own time
-* Merge Branches: April 3rd, by end of day have calendar complete and functions figured out. 
-* Complete Project by: April 7th
+* Milestone: **April 3rd**: By end of day have calendar complete and functions figured out. Add in a JS library.
+* Complete Project by: **April 7th**
 * Visualizations worked on in own time
-* Presentation: April 10th
+* Presentation: **April 10th**
   
