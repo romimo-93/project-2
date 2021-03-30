@@ -47,6 +47,6 @@ User Action - click calendar square: [World Animation](https://observablehq.com/
 * Visualizations worked on in own time
 * Milestone: **April 3rd**: By end of day have calendar complete and functions figured out. Add in a JS library.
 * Complete Project by: **April 7th**
-* Visualizations worked on in own time
+* Visualizations worked on and write up 
 * Presentation: **April 10th**
   
