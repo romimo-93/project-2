@@ -6,7 +6,6 @@
 5. d3 visualization of world globe that can show where the airline wrecks are around the world based on lat and long.
 
 ### Proposal
-
 [Airline Dataset](https://www.kaggle.com/prathamsharma123/aviation-accidents-and-incidents-ntsb-faa-waas)  
 Initial View: [Calendar View](https://observablehq.com/@d3/calendar-view)  
 User Action - click calendar square: [World Animation](https://observablehq.com/@d3/world-tour)
@@ -27,9 +26,10 @@ User Action - click calendar square: [World Animation](https://observablehq.com/
     * Training for pilots based on accident reports.
 ---
 ### Requirements:
-1. Database: MongoDB or SQL --> https://cloud.google.com/sql/docs --> **Jenny**
-2. A custom "creative" D3.js Project
-3.  New JS library --> TBD (i.e. [animeJS](https://animejs.com/) or [premonish](https://mathisonian.github.io/premonish/))
+1. Database: SQL --> https://cloud.google.com/sql/docs --> **Jenny**
+2. Flask: app.py to host the data. Bellybutton hw html --> **Tanlin/Andrew** 
+3. A custom "creative" D3.js Project
+4.  New JS library --> TBD (i.e. [animeJS](https://animejs.com/) or [premonish](https://mathisonian.github.io/premonish/))
 
 
 ### Vizualizations
@@ -40,4 +40,13 @@ User Action - click calendar square: [World Animation](https://observablehq.com/
     * Table with user input for airline. 
 4. Data comparisons/ side by side comparisons with bar,scatter --> **Jenny**
     * Comparisons of airline(groupby) and fatalities
+
+### Time Line
+* Complete Flask: March 31st
+* Complete SQL: April 1st
+* Visualizations worked on in own time
+* Merge Branches: April 3rd, by end of day have calendar complete and functions figured out. 
+* Complete Project by: April 7th
+* Visualizations worked on in own time
+* Presentation: April 10th
   
