@@ -1,0 +1,15 @@
+<!-- Extend base layout template -->
+{% extends 'base.html' %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+
+<!-- Content -->
+{% block content %}
+
+<a href="/world_tour">World Tour</a>
+
+{% endblock %}
+{% block scripts %}
+  <script src="../static/js/calendar.js"></script>
+{% endblock %}
