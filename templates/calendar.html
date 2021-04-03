@@ -7,10 +7,10 @@
 <!-- Content -->
 {% block content %}
 
-<a href="/calendar">Calendar</a>
-<a href="/world_tour">World Tour</a>
 
 
-<div id="table">Table Here! {{ tabledata }}</div>
-
+{% endblock %}
+{% block scripts %}
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="/static/js/calendar.js"></script>
 {% endblock %}

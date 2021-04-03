@@ -12,7 +12,7 @@ def home():
 @app.route("/calendar")
 def calendar():
     
-    return ""
+    return render_template("calendar.html")
 
 
 @app.route("/world_tour")
