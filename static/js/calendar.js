@@ -10,7 +10,7 @@ var color = d3.scaleQuantize()
 
 var svg = d3.select("body")
     .selectAll("svg")
-    .data(d3.range(1948, 2020))
+    .data(d3.range(1948, 2021))
     .enter().append("svg")
     .attr("width", width)
     .attr("height", height)
@@ -44,7 +44,7 @@ svg.append("g")
     .enter().append("path")
     .attr("d", pathMonth);
 
-d3.csv("/airline_accident_data/airline_accidents.csv", function(error, csv) {
+d3.csv("../airline_accident_data/airline_accidents.csv", function(error, csv) {
     if (error) throw error;
     console.log(csv);
     // var data = d3.nest()
@@ -58,13 +58,13 @@ d3.csv("/airline_accident_data/airline_accidents.csv", function(error, csv) {
     //     .text(function(d) { return d + ": " + formatPercent(data[d]); });
 });
 
-// function pathMonth(t0) {
-//   var t1 = new Date(t0.getFullYear(), t0.getMonth() + 1, 0),
-//       d0 = t0.getDay(), w0 = d3.timeWeek.count(d3.timeYear(t0), t0),
-//       d1 = t1.getDay(), w1 = d3.timeWeek.count(d3.timeYear(t1), t1);
-//   return "M" + (w0 + 1) * cellSize + "," + d0 * cellSize
-//       + "H" + w0 * cellSize + "V" + 7 * cellSize
-//       + "H" + w1 * cellSize + "V" + (d1 + 1) * cellSize
-//       + "H" + (w1 + 1) * cellSize + "V" + 0
-//       + "H" + (w0 + 1) * cellSize + "Z";
-// }
+function pathMonth(t0) {
+  var t1 = new Date(t0.getFullYear(), t0.getMonth() + 1, 0),
+      d0 = t0.getDay(), w0 = d3.timeWeek.count(d3.timeYear(t0), t0),
+      d1 = t1.getDay(), w1 = d3.timeWeek.count(d3.timeYear(t1), t1);
+  return "M" + (w0 + 1) * cellSize + "," + d0 * cellSize
+      + "H" + w0 * cellSize + "V" + 7 * cellSize
+      + "H" + w1 * cellSize + "V" + (d1 + 1) * cellSize
+      + "H" + (w1 + 1) * cellSize + "V" + 0
+      + "H" + (w0 + 1) * cellSize + "Z";
+}
