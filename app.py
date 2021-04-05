@@ -27,8 +27,8 @@ def home():
 @app.route("/calendar")
 def calendar():
     
-    data = db.session.query().all()
-    return render_template("calendar.html", data=data)
+    # data = db.session.query().all()
+    return render_template("calendar.html")
 
 
 @app.route("/world_tour")
