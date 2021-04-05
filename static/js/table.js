@@ -1,72 +1,29 @@
-
-
 d3.csv("/static/airline_accident_data/airline_accidents.csv", function(tableData) {
-    // var tableData = ("../airline_accident_data/airline_accidents.csv");
-        console.log(tableData);
+  // console.log(tableData);
+  const tbody = d3.select("tbody");
 
+  // First, clear out any existing data
+  tbody.html("");
 
+  // Next, loop through each object in the data
+  // and append a row and cells for each value in the row
+  var fields = ["Event Date", "Location", "Country", "Airport Code", "Airport Name", "Injury Severity", "Total Fatal Injuries"];
 
-    const tbody = d3.select("tbody");
+  tableData.forEach((dataRow) => {
+    // Append a row to the table body
+    const row = tbody.append("tr");
 
-    function buildTable(csv) {
-      // First, clear out any existing data
-      tbody.html("");
-    
-      // Next, loop through each object in the data
-      // and append a row and cells for each value in the row
-      var event_date = []
-      var location = []
-      var country = []
-      var airplane_code = []
-      var airport_name = []
-      var injury = []
-      var fatal = []
+    // Loop through each field in the dataRow and add
+    // each value as a table cell (td)
 
-      tableData.forEach((dataRow) => {
-        // Append a row to the table body
-        const row = tbody.append("tr");
-    
-        // Loop through each field in the dataRow and add
-        // each value as a table cell (td)
-
-        Object.values(dataRow).forEach((val) => {
-            if (key === "Event Date"){
-                event_date.push(value);
-            }
-            else if (key === "Location"){
-                location.push(value);
-            }
-            else if (key === "Country"){
-                location.push(value);
-            }
-            else if (key === "Airport Code"){
-                location.push(value);
-            }
-            else if (key === "Airport Name"){
-                location.push(value);
-            }
-            else if (key === "Location"){
-                location.push(value);
-            }
-            let cell = row.append("td").text(event_date);
-              cell.text(val);
-            }
-          );
-        });
+    Object.values(dataRow).forEach((key, value) => {
+      if (key in fields) {
+        row.append("td", value);
+        console.log("true");
       }
-    //     Object.values(dataRow).forEach((val) => {
-    //         if (key === "Event Date"){
-    //             event_date.push(value);
-    //         }
-    //         else if (key === "Location"){
-    //             location.push(value);)
-    //         }
-    //         let cell = row.append("td");
-    //             cell.text(val);
-    //       });
-    //     );
-    //   });
-    // }
+    });
+  });
+});
 
 // get table references
 
@@ -95,6 +52,4 @@ function handleClick() {
 d3.selectAll("#filter-btn").on("click", handleClick);
 
 // Build the table when the page loads
-buildTable(tableData);
-
-});
+// buildTable(tableData);
