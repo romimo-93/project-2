@@ -22,42 +22,46 @@ svg.append("text")
     .attr("font-family", "sans-serif")
     .attr("font-size", 10)
     .attr("text-anchor", "middle")
-    .text(function(d) { return d; });
+    .text(d => d);
 
 var rect = svg.append("g")
     .attr("fill", "none")
     .attr("stroke", "#ccc")
     .selectAll("rect")
-    .data(function(d) { return d3.timeDays(new Date(d, 0, 1), new Date(d + 1, 0, 1)); })
+    .data(d => d3.timeDays(new Date(d, 0, 1), new Date(d + 1, 0, 1)))
     .enter().append("rect")
     .attr("width", cellSize)
     .attr("height", cellSize)
-    .attr("x", function(d) { return d3.timeWeek.count(d3.timeYear(d), d) * cellSize; })
-    .attr("y", function(d) { return d.getDay() * cellSize; })
+    .attr("x", d => d3.timeWeek.count(d3.timeYear(d), d) * cellSize)
+    .attr("y", d => d.getDay() * cellSize)
     .datum(d3.timeFormat("%m/%d/%Y"));
 
 svg.append("g")
     .attr("fill", "none")
     .attr("stroke", "#000")
     .selectAll("path")
-    .data(function(d) { return d3.timeMonths(new Date(d, 0, 1), new Date(d + 1, 0, 1)); })
+    .data(d => d3.timeMonths(new Date(d, 0, 1), new Date(d + 1, 0, 1)))
     .enter().append("path")
     .attr("d", pathMonth);
 
-d3.csv("/static/airline_accident_data/airline_accidents.csv", function(error, csv) {
+d3.csv("/static/airline_accident_data/airline_accidents.csv", (error, csv) => {
     if (error) throw error;
 
     var data = d3.nest()
         .key(d => d["Event Date"])
         .rollup(v => v.length, d => d["Event Date"])
         .object(csv);
-      
-        console.log(data);
 
-    rect.filter(function(d) { return d in data; })
-        .attr("fill", function(d) { return color(data[d]); })
+    rect.filter(d => d in data)
+        .attr("fill", d => color(data[d]))
         .append("title")
-        .text(function(d) { return d + ": " + data[d]; });
+        .text(d => `${d}: ${data[d]}`);
+
+    rect.on("click", gotoWorld);
+
+    function gotoWorld(data) {
+        console.log(data);
+    }
 });
 
 function pathMonth(t0) {
