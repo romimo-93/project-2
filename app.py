@@ -1,5 +1,8 @@
+# Dependencies
 from flask import Flask, render_template
+import os
 
+# App Config
 app = Flask(__name__)
 
 #################################################
@@ -16,24 +19,33 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return render_template("index.html")
+
+    tabledata = "..."
+    return render_template("index.html", tabledata=tabledata)
 
 
 @app.route("/calendar")
 def calendar():
     
-    return ""
+    # data = db.session.query().all()
+    return render_template("calendar.html")
 
 
 @app.route("/world_tour")
 def world_tour():
-    
+
     return render_template("world_tour.html")
 
 
 @app.route("/data_comparisons")
 def data_comparisons():
     
+    return ""
+
+
+@app.route("/data")
+def data():
+
     return ""
 
 if __name__ == "__main__":
