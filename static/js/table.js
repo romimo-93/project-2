@@ -1,40 +1,29 @@
-
-
 d3.csv("/static/airline_accident_data/airline_accidents.csv", function(tableData) {
-    // var tableData = ("../airline_accident_data/airline_accidents.csv");
-        console.log(tableData);
+  // console.log(tableData);
+  const tbody = d3.select("tbody");
 
+  // First, clear out any existing data
+  tbody.html("");
 
+  // Next, loop through each object in the data
+  // and append a row and cells for each value in the row
+  var fields = ["Event Date", "Location", "Country", "Airport Code", "Airport Name", "Injury Severity", "Total Fatal Injuries"];
 
-    const tbody = d3.select("tbody");
+  tableData.forEach((dataRow) => {
+    // Append a row to the table body
+    const row = tbody.append("tr");
 
-    function buildTable(csv) {
-      // First, clear out any existing data
-      tbody.html("");
-    
-      // Next, loop through each object in the data
-      // and append a row and cells for each value in the row
-      
-    
+    // Loop through each field in the dataRow and add
+    // each value as a table cell (td)
 
-      tableData.forEach((dataRow) => {
-        // Append a row to the table body
-        const row = tbody.append("tr");
-    
-        // Loop through each field in the dataRow and add
-        // each value as a table cell (td)
-
-        Object.values(dataRow).forEach((key, value) => {
-            if (key in fields) {
-                row.append("td", value);
-            }
-        });
-      });
-    };
+    Object.values(dataRow).forEach((key, value) => {
+      if (key in fields) {
+        row.append("td", value);
+        console.log("true");
+      }
+    });
+  });
 });
-
-
-
 
 // get table references
 
@@ -63,6 +52,4 @@ function handleClick() {
 d3.selectAll("#filter-btn").on("click", handleClick);
 
 // Build the table when the page loads
-buildTable(tableData);
-
-});
+// buildTable(tableData);

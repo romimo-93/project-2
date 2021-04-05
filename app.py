@@ -36,6 +36,11 @@ def world_tour():
 
     return render_template("world_tour.html")
 
+@app.route("/table")
+def table():
+
+    return render_template("table.html")
+
 
 @app.route("/data_comparisons")
 def data_comparisons():
@@ -49,4 +54,4 @@ def data():
     return ""
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
