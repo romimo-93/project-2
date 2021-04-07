@@ -1,220 +1,375 @@
 
+    function circleSize(fatalities) {
+      return fatalities ** 1.5;
+    }
 
-var svgWidth = 960;
-var svgHeight = 500;
+    // Create function to set the color for different magnitude
+    function getColor(fatalities) {
+      // Conditionals for magnitude
+      if (fatalities >= 50) {
+        return "red";
+      }
+      else if (fatalities >= 25) {
+        return "peru";
+      }
+      else if (fatalities >= 15) {
+      return "darkorange";
+      }
+      else if (fatalities >= 10) {
+        return "yellow";
+      }
+      else if (fatalities >= 5) {
+        return "yellowgreen";
+      }
+      else {
+        return "green";
+      }
+    };
+// Perform a GET request to the query URL
+d3.csv("/static/airline_accident_data/airline_accidents.csv", function(tableData) {
+    console.log(tableData)
+// Once we get a response, send the data.features object to the createFeatures function
+    createFeatures(tableData);
+    });
 
-var margin = {
-  top: 20,
-  right: 40,
-  bottom: 80,
-  left: 100
+function createFeatures(airlines) {
+
+function onEachLayer(feature) {
+  return new L.circleMarker([feature["Latitude"], feature["Longitude"]], {
+    radius: circleSize(feature["Total Fatal Injuries"]),
+    fillOpacity: 0.8,
+    color: getColor["Total Fatal Injuries"],
+    fillColor: getColor["Total Fatal Injuries"],
+  });
+}
+
+// // Define a function we want to run once for each feature in the features array
+// // Give each feature a popup describing the place and time of the earthquake
+function onEachFeature(feature, layer) {
+  layer.bindPopup("<h3>" + feature["Location"] +
+    "</h3><hr><p>" + new Date(feature["Location"]) + "</p><hr><p>" + feature["Event Date"] + "</p>");
+}
+
+// // Create a GeoJSON layer containing the features array on the earthquakeData object
+// // Run the onEachFeature function once for each piece of data in the array
+var airlines = L.geoJSON(airlinesData, {
+  onEachFeature: onEachFeature,
+  pointToLayer: onEachLayer
+});
+
+// // Sending our earthquakes layer to the createMap function
+createMap(airlines);
+}
+
+function createMap(airlines) {
+
+// // Define satellite, grayscale and outdoor map layers
+var satellitemap = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
+  attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
+  maxZoom: 18,
+  id: "mapbox.satellite",
+  accessToken: API_KEY
+});
+
+// var light = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+//   attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
+//   maxZoom: 18,
+//   id: "light-v10",
+//   accessToken: API_KEY
+// });
+
+// var dark = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+//   attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
+//   maxZoom: 18,
+//   id: "dark-v10",
+//   accessToken: API_KEY
+// });
+
+// var faultLine = new L.LayerGroup();
+
+
+// Define a baseMaps object to hold our base layers
+var baseMaps = {
+  "Satellite": satellitemap,
+  // "Light Map": light,
+  // "Dark Map": dark
 };
 
-var width = svgWidth - margin.left - margin.right;
-var height = svgHeight - margin.top - margin.bottom;
+// // Create overlay object to hold our overlay layer
+var overlayMaps = {
+  Airlines: airlines,
+  // Faultline: faultLine
+};
 
-// Create an SVG wrapper, append an SVG group that will hold our chart,
-// and shift the latter by left and top margins.
-var svg = d3
-  .select(".chart")
-  .append("svg")
-  .attr("width", svgWidth)
-  .attr("height", svgHeight);
+// // Create our map, giving it the streetmap and earthquakes layers to display on load
+var myMap = L.map("mapid", {
+  center: [
+    0.00, 0.00
+  ],
+  zoom: 2,
+  layers: [satellitemap, airlines]
+});
 
-// Append an SVG group
-var chartGroup = svg.append("g")
-  .attr("transform", `translate(${margin.left}, ${margin.top})`);
+// // Create a layer control
+// // Pass in our baseMaps and overlayMaps
+// // Add the layer control to the map
+L.control.layers(baseMaps, overlayMaps, {
+  collapsed: true
+}).addTo(myMap);
 
-// Initial Params
-var chosenXAxis = "AirportCode";
+// var faultlinequery = "https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_plates.json";
 
-// function used for updating x-scale var upon click on axis label
-function xScale(airportData, chosenXAxis) {
-  // create scales
-  var xLinearScale = d3.scaleLinear()
-    .domain([d3.min(airportData, d => d[chosenXAxis]) * 0.8,
-      d3.max(airportData, d => d[chosenXAxis]) * 1.2
-    ])
-    .range([0, width]);
+// // Create the faultlines and add them to the faultline layer
+// d3.json(faultlinequery, function(data) {
+//   L.geoJSON(data, {
+//     style: function() {
+//       return {color: "orange", fillOpacity: 0}
+//     }
+//   }).addTo(faultLine)
+// })
 
-  return xLinearScale;
+// // Create a legend to display information about our map
+var info = L.control({
+  position: "bottomright"
+});
 
-}
+// // When the layer control is added, insert a div with the class of "legend"
+info.onAdd = function() {
+  var div = L.DomUtil.create("div", "legend"),
+    labels = ["0-5", "5-10", "10-15", "15-25", "25-50", "50+"];
+    //colors = ["green", "greenyellow", "yellowgreen", "yellow", "orange", "red"];
 
-// function used for updating xAxis var upon click on axis label
-function renderAxes(newXScale, xAxis) {
-  var bottomAxis = d3.axisBottom(newXScale);
-
-  xAxis.transition()
-    .duration(1000)
-    .call(bottomAxis);
-
-  return xAxis;
-}
-
-// function used for updating circles group with a transition to
-// new circles
-function renderCircles(circlesGroup, newXScale, chosenXAxis) {
-
-  circlesGroup.transition()
-    .duration(1000)
-    .attr("cx", d => newXScale(d[chosenXAxis]));
-
-  return circlesGroup;
-}
-
-// function used for updating circles group with new tooltip
-function updateToolTip(chosenXAxis, circlesGroup) {
-
-  var label;
-
-  if (chosenXAxis === "AirportCode") {
-    label = "Airport Code";
+  for (var i = 0; i < labels.length; i++) {
+    div.innerHTML += '<i style="background:' + getColor(i) + '"></i> ' +
+            labels[i] + '<br>' ;
   }
-  else {
-    label = "Location";
-  }
+  return div;
+};
+// Add the info legend to the map
+info.addTo(myMap);
 
-  var toolTip = d3.tip()
-    .attr("class", "tooltip")
-    .offset([80, -60])
-    .html(function(d) {
-      return (`${d['Airport Code']}<br>${label} ${d[chosenXAxis]}`);
-    });
+};
 
-  circlesGroup.call(toolTip);
 
-  circlesGroup.on("mouseover", function(data) {
-    toolTip.show(data);
-  })
-    // onmouseout event
-    .on("mouseout", function(data, index) {
-      toolTip.hide(data);
-    });
 
-  return circlesGroup;
-}
 
-// Retrieve data from the CSV file and execute everything below
-d3.csv("/static/airline_accident_data/airline_accidents.csv", function(error, tableData) {
-  if (error) throw err;
 
-  // parse data
-  tableData.forEach(function(data) {
-    data['Airport Code'] = data['Airport Code'];
-    data['Total Fatal Injuries'] = +data['Total Fatal Injuries'];
-    // data['Location'] = +data['Location'];
-    // console.log(data['Airport Code']);
-  });
 
-  // xLinearScale function above csv import
-  var xLinearScale = xScale(tableData, chosenXAxis);
+// var svgWidth = 960;
+// var svgHeight = 500;
 
-  // Create y scale function
-  var yLinearScale = d3.scaleLinear()
-    .domain([0, d3.max(tableData, d => d.num_hits)])
-    .range([height, 0]);
+// var margin = {
+//   top: 20,
+//   right: 40,
+//   bottom: 80,
+//   left: 100
+// };
 
-  // Create initial axis functions
-  var bottomAxis = d3.axisBottom(xLinearScale);
-  var leftAxis = d3.axisLeft(yLinearScale);
+// var width = svgWidth - margin.left - margin.right;
+// var height = svgHeight - margin.top - margin.bottom;
 
-  // append x axis
-  var xAxis = chartGroup.append("g")
-    .classed("x-axis", true)
-    .attr("transform", `translate(0, ${height})`)
-    .call(bottomAxis);
+// // Create an SVG wrapper, append an SVG group that will hold our chart,
+// // and shift the latter by left and top margins.
+// var svg = d3
+//   .select(".chart")
+//   .append("svg")
+//   .attr("width", svgWidth)
+//   .attr("height", svgHeight);
 
-  // append y axis
-  chartGroup.append("g")
-    .call(leftAxis);
+// // Append an SVG group
+// var chartGroup = svg.append("g")
+//   .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
-  // append initial circles
-  var circlesGroup = chartGroup.selectAll("circle")
-    .data(tableData)
-    .enter()
-    .append("circle")
-    .attr("cx", d => xLinearScale(d[chosenXAxis]))
-    .attr("cy", d => yLinearScale(d.num_hits))
-    .attr("r", 20)
-    .attr("fill", "pink")
-    .attr("opacity", ".5");
+// // Initial Params
+// var chosenXAxis = "AirportCode";
 
-  // Create group for two x-axis labels
-  var labelsGroup = chartGroup.append("g")
-    .attr("transform", `translate(${width / 2}, ${height + 20})`);
+// // function used for updating x-scale var upon click on axis label
+// function xScale(airportData, chosenXAxis) {
+//   // create scales
+//   var xLinearScale = d3.scaleLinear()
+//     .domain([d3.min(airportData, d => d[chosenXAxis]) * 0.8,
+//       d3.max(airportData, d => d[chosenXAxis]) * 1.2
+//     ])
+//     .range([0, width]);
 
-  // var locationLabel = labelsGroup.append("text")
-  //   .attr("x", 0)
-  //   .attr("y", 20)
-  //   .attr("value", "location") // value to grab for event listener
-  //   .classed("active", true)
-  //   .text("Location");
+//   return xLinearScale;
 
-  var codeLabel = labelsGroup.append("text")
-    .attr("x", 0)
-    .attr("y", 40)
-    .attr("value", "airportCode") // value to grab for event listener
-    .classed("inactive", true)
-    .text("Airport Code");
+// }
 
-  // append y axis
-  chartGroup.append("text")
-    .attr("transform", "rotate(-90)")
-    .attr("y", 0 - margin.left)
-    .attr("x", 0 - (height / 2))
-    .attr("dy", "1em")
-    .classed("axis-text", true)
-    .text("Number of Fatal Injuries");
+// // function used for updating xAxis var upon click on axis label
+// function renderAxes(newXScale, xAxis) {
+//   var bottomAxis = d3.axisBottom(newXScale);
 
-  // updateToolTip function above csv import
-  var circlesGroup = updateToolTip(chosenXAxis, circlesGroup);
+//   xAxis.transition()
+//     .duration(1000)
+//     .call(bottomAxis);
 
-  // x axis labels event listener
-  labelsGroup.selectAll("text")
-    .on("click", function() {
-      // get value of selection
-      var value = d3.select(this).attr("value");
-      if (value !== chosenXAxis) {
+//   return xAxis;
+// }
 
-        // replaces chosenXAxis with value
-        chosenXAxis = value;
+// // function used for updating circles group with a transition to
+// // new circles
+// function renderCircles(circlesGroup, newXScale, chosenXAxis) {
 
-        console.log(chosenXAxis)
+//   circlesGroup.transition()
+//     .duration(1000)
+//     .attr("cx", d => newXScale(d[chosenXAxis]));
 
-        // functions here found above csv import
-        // updates x scale for new data
-        xLinearScale = xScale(tableData, chosenXAxis);
+//   return circlesGroup;
+// }
 
-        // updates x axis with transition
-        xAxis = renderAxes(xLinearScale, xAxis);
+// // function used for updating circles group with new tooltip
+// function updateToolTip(chosenXAxis, circlesGroup) {
 
-        // updates circles with new x values
-        circlesGroup = renderCircles(circlesGroup, xLinearScale, chosenXAxis);
+//   var label;
 
-        // updates tooltips with new info
-        circlesGroup = updateToolTip(chosenXAxis, circlesGroup);
+//   chosenXAxis === "AirportCode" 
+//     label = "Airport Code";
+  
+//   // else {
+//   //   label = "Location";
+//   // }
 
-        // changes classes to change bold text
-        if (chosenXAxis === "airportCode") {
-          codeLabel
-            .classed("active", true)
-            .classed("inactive", false);
-          // locationLabel
-          //   .classed("active", false)
-          //   .classed("inactive", true);
-        }
-        else {
-          codeLabel
-            .classed("active", false)
-            .classed("inactive", true);
-          // locationLabel
-          //   .classed("active", true)
-          //   .classed("inactive", false);
-        }
-      }
-    });
-})
+//   var toolTip = d3.tip()
+//     .attr("class", "tooltip")
+//     .offset([80, -60])
+//     .html(function(d) {
+//       return (`${d['Airport Code']}<br>${label} ${d[chosenXAxis]}`);
+//     });
+
+//   circlesGroup.call(toolTip);
+
+//   circlesGroup.on("mouseover", function(data) {
+//     toolTip.show(data);
+//   })
+//     // onmouseout event
+//     .on("mouseout", function(data, index) {
+//       toolTip.hide(data);
+//     });
+
+//   return circlesGroup;
+// }
+
+// // Retrieve data from the CSV file and execute everything below
+// d3.csv("/static/airline_accident_data/airline_accidents.csv", function(error, tableData) {
+//   if (error) throw err;
+
+//   // parse data
+//   tableData.forEach(function(data) {
+//     data['Airport Code'] = data['Airport Code'];
+//     data['Total Fatal Injuries'] = +data['Total Fatal Injuries'];
+//     // data['Location'] = +data['Location'];
+//     // console.log(data['Airport Code']);
+//   });
+
+//   // xLinearScale function above csv import
+//   var xLinearScale = xScale(tableData, chosenXAxis);
+
+//   // Create y scale function
+//   var yLinearScale = d3.scaleLinear()
+//     .domain([0, d3.max(tableData, d => d.num_hits)])
+//     .range([height, 0]);
+
+//   // Create initial axis functions
+//   var bottomAxis = d3.axisBottom(xLinearScale);
+//   var leftAxis = d3.axisLeft(yLinearScale);
+
+//   // append x axis
+//   var xAxis = chartGroup.append("g")
+//     .classed("x-axis", true)
+//     .attr("transform", `translate(0, ${height})`)
+//     .call(bottomAxis);
+
+//   // append y axis
+//   chartGroup.append("g")
+//     .call(leftAxis);
+
+//   // append initial circles
+//   var circlesGroup = chartGroup.selectAll("circle")
+//     .data(tableData)
+//     .enter()
+//     .append("circle")
+//     .attr("cx", d => xLinearScale(d[chosenXAxis]))
+//     .attr("cy", d => yLinearScale(d.num_hits))
+//     .attr("r", 20)
+//     .attr("fill", "pink")
+//     .attr("opacity", ".5");
+
+//   // Create group for two x-axis labels
+//   var labelsGroup = chartGroup.append("g")
+//     .attr("transform", `translate(${width / 2}, ${height + 20})`);
+
+//   // var locationLabel = labelsGroup.append("text")
+//   //   .attr("x", 0)
+//   //   .attr("y", 20)
+//   //   .attr("value", "location") // value to grab for event listener
+//   //   .classed("active", true)
+//   //   .text("Location");
+
+//   var codeLabel = labelsGroup.append("text")
+//     .attr("x", 0)
+//     .attr("y", 40)
+//     .attr("value", "airportCode") // value to grab for event listener
+//     .classed("inactive", true)
+//     .text("Airport Code");
+
+//   // append y axis
+//   chartGroup.append("text")
+//     .attr("transform", "rotate(-90)")
+//     .attr("y", 0 - margin.left)
+//     .attr("x", 0 - (height / 2))
+//     .attr("dy", "1em")
+//     .classed("axis-text", true)
+//     .text("Number of Fatal Injuries");
+
+//   // updateToolTip function above csv import
+//   var circlesGroup = updateToolTip(chosenXAxis, circlesGroup);
+
+//   // x axis labels event listener
+//   labelsGroup.selectAll("text")
+//     .on("click", function() {
+//       // get value of selection
+//       var value = d3.select(this).attr("value");
+//       if (value !== chosenXAxis) {
+
+//         // replaces chosenXAxis with value
+//         chosenXAxis = value;
+
+//         console.log(chosenXAxis)
+
+//         // functions here found above csv import
+//         // updates x scale for new data
+//         xLinearScale = xScale(tableData, chosenXAxis);
+
+//         // updates x axis with transition
+//         xAxis = renderAxes(xLinearScale, xAxis);
+
+//         // updates circles with new x values
+//         circlesGroup = renderCircles(circlesGroup, xLinearScale, chosenXAxis);
+
+//         // updates tooltips with new info
+//         circlesGroup = updateToolTip(chosenXAxis, circlesGroup);
+
+//         // changes classes to change bold text
+//         if (chosenXAxis === "airportCode") {
+//           codeLabel
+//             .classed("active", true)
+//             .classed("inactive", false);
+//           // locationLabel
+//           //   .classed("active", false)
+//           //   .classed("inactive", true);
+//         }
+//         else {
+//           codeLabel
+//             .classed("active", false)
+//             .classed("inactive", true);
+//           // locationLabel
+//           //   .classed("active", true)
+//           //   .classed("inactive", false);
+//         }
+//       }
+//     });
+// })
 // .catch(function(error) {
 //   console.log(error);
 // });
