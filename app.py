@@ -14,20 +14,17 @@ app = Flask(__name__)
 # # Remove tracking modifications
 # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-# db = SQLAlchemy(app)
+db = SQLAlchemy(app)
+# data = db.session.query().all()
 
 
 @app.route("/")
 def home():
-
-    tabledata = "..."
-    return render_template("index.html", tabledata=tabledata)
+    return render_template("index.html")
 
 
 @app.route("/calendar")
 def calendar():
-    
-    # data = db.session.query().all()
     return render_template("calendar.html")
 
 
