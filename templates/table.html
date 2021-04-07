@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+
+<!-- Content -->
+{% block content %}
+  <div class="hero text-center">
+    <h1>Airplane Wrecks</h1>
+    <p>Still safer then any other mode of transportation</p>
+  </div>
+  <div class="container">
+    <div class="row margin-top-50">
+      <div class="col-md-2">
+        <aside class="filters">
+          <div class="panel panel-default">
+            <div class="panel-heading">Filter Search</div>
+            <div class="panel-body">
+              <form>
+                <div class="form-group">
+                  <ul class="list-group" id="filters">
+                    <li class="filter list-group-item">
+                      <label for="date">Enter an Airport Code</label>
+                      <input class="form-control" id="datetime" type="text" placeholder="JFK">
+                    </li>
+                  </ul>
+                </div>
+                <button id="filter-btn" type="button" class="btn btn-default">Filter Table</button>
+              </form>
+            </div>
+          </div>
+        </aside>
+      </div>
+      <div class="col-md-10">
+        <div id="table-area" class="">
+          <table id="ufo-table" class="table table-striped">
+            <thead>
+              <tr>
+                <th class="table-head">Event Date</th>
+                <th class="table-head">Location</th>
+                <th class="table-head">Country</th>
+                <th class="table-head">Airport Code</th>
+                <th class="table-head">Airport Name</th>
+                <th class="table-head">Injury Severity</th>
+                <th class="table-head">Total Fatal Injuries</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+
+{% block scripts %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <!-- <script src="/static/js/table.js"></script>   -->
+{% endblock %}
