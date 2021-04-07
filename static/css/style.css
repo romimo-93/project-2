@@ -64,7 +64,8 @@ text {
   
     /* Typography */
     font-family: Arial;
-    font-weight: lighter;
+    font-weight: bolder;
+  
   }
   
   /* Nav element hover state */
@@ -169,6 +170,12 @@ text {
     margin-top: 50px;
   }
   
+
+  .h1 {
+    color: black;
+    font-weight: bolder;
+  }
+
   /* The styles for the parallax */
     .hero {
     height: 550px;
