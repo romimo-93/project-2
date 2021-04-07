@@ -36,39 +36,6 @@ CREATE TABLE airline_accidents (
 	PRIMARY KEY(id)
 );
 
-COPY airline_accidents(Event_Id, 
-	investigation_type,
-	accident_number, 
-	event_date, 
-	location, 
-	country, 
-	latitude, 
-	longitude,
-	airport_code, 
-	airport_name, 
-	injury_severity, 
-	aircraft_damage, 
-	aircraft_category, 
-	registration_number, 
-	make, 
-	model, 
-	amateur_built, 
-	number_of_engines, 
-	engine_type, 
-	FAR_description, 
-	schedule, 
-	purpose_of_flight, 
-	air_carrier, 
-	total_fatal_injuries, 
-	total_serious_injuries, 
-	total_minor_injuries, 
-	total_uninjured, 
-	weather_condition, 
-	broad_phase_of_flight, 
-	report_publication_date)
-FROM 'C:\Users\Public\Documents\airline_accident_data\airline_accidents.csv'
-DELIMITER ','
-CSV HEADER;
 
 SELECT * FROM airline_accidents;
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
@@ -106,35 +73,6 @@ CREATE TABLE faa_incidents_data (
 	PRIMARY KEY(id)
 );
 
-COPY faa_incidents_data (
-	AIDS_report, 
-	local_event_date,
-	event_city, 
-	event_state, 
-	event_airport, 
-	event_type, 
-	aircraft_damage, 
-	flight_phase, 
-	aircraft_make, 
-	aircraft_model,
-	aircraft_series, 
-	operator,
-	primary_flight_type,
-	flight_conduct_code, 
-	flight_plan_filed_code,
-	aircraft_registration_nbr,
-	total_fatalities, 
-	total_injuries,
-	aircraft_engine_make,
-	aircraft_engine_model, 
-	engine_group_code, 
-	nbr_of_engines,
-	PIC_certificate_type,
-	PIC_flight_time_total_hours,
-	PIC_flight_time_total_make_model) 
-	FROM 'C:\Users\Public\Documents\airline_accident_data\faa_incidents_data.csv'
-	DELIMITER ','
-	CSV HEADER;
 	
 SELECT * FROM faa_incidents_data;
 
@@ -165,26 +103,6 @@ CREATE TABLE ntsb_aviation_data(
 	
 );
 
-COPY ntsb_aviation_data (
-	ntsb_rprt_nbr, 
-	acft_regist_nbr, 
-	acft_serial_nbr, 
-	ev_type_desc, 
-	event_lcl_date,
-	loc_state_code_std, 
-	aprt_name_std, 
-	fltcndct_desc, 
-	oprtr_sched_desc, 
-	oprtr_nsdc_name_std,
-	acft_nsdc_make_std, 
-	acft_csdc_model_std, 
-	acft_nsdc_series_std,
-	report_status, 
-	injury_desc,
-	flight_phase_desc)
-FROM 'C:\Users\Public\Documents\airline_accident_data\ntsb_aviation_data.csv'
-DELIMITER ','
-CSV HEADER;
 
 SELECT * FROM ntsb_aviation_data;
 
@@ -207,22 +125,6 @@ CREATE TABLE world_aircraft_accident_summary(
 	PAX_aboard INTEGER,
 	PRIMARY KEY(id)
 );
-
-COPY world_aircraft_accident_summary(
-	WAAS_subset_event_id, 
-	local_event_date, 
-	aircraft, 
-	aircraft_operator, 
-	event_location, 
-	crew_fatalities, 
-	crew_injured,
-	crew_aboard, 
-	PAX_fatalities, 
-	PAX_injuries, 
-	PAX_aboard)
-FROM 'C:\Users\Public\Documents\airline_accident_data\world_aircraft_accident_summary.csv'
-DELIMITER ','
-CSV HEADER;
 
 SELECT * FROM world_aircraft_accident_summary;
 
