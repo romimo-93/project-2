@@ -14,7 +14,7 @@ app = Flask(__name__)
 # # Remove tracking modifications
 # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-db = SQLAlchemy(app)
+# db = SQLAlchemy(app)
 # data = db.session.query().all()
 
 
