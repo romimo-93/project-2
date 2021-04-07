@@ -267,18 +267,3 @@ select {
     animation: smaller-title 1.2s forwards linear;
   }
 }
-
-.svg-container {
-  display: inline-block;
-  position: relative;
-  width: 50%;
-  padding-bottom: 100%; /* aspect ratio */
-  vertical-align: top;
-  overflow: hidden;
-}
-.svg-content-responsive {
-  display: inline-block;
-  position: absolute;
-  top: 0px;
-  left: 0;
-}
