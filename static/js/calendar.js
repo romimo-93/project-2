@@ -1,6 +1,10 @@
-var width = 960,
+var div = d3.select("#ntsb")
+    .node()
+    .getBoundingClientRect();
+
+var width = div.width,
     height = 136,
-    cellSize = 17;
+    cellSize = div.width * .016;
 
 
 var color = d3.scaleQuantize()
@@ -9,7 +13,7 @@ var color = d3.scaleQuantize()
 
 var svgNTSB = d3.select("#ntsb")
     .selectAll("svg")
-    .data(d3.range(1964, 2008))
+    .data(d3.range(1964, 2016))
     .enter().append("svg")
     .attr("width", width)
     .attr("height", height)
@@ -18,7 +22,7 @@ var svgNTSB = d3.select("#ntsb")
 
 var svgFAA = d3.select("#faa")
     .selectAll("svg")
-    .data(d3.range(1964, 2021))
+    .data(d3.range(1964, 2016))
     .enter().append("svg")
     .attr("width", width)
     .attr("height", height)
@@ -93,8 +97,8 @@ function main(error, ntsb, faa) {
         .object(ntsb);
 
     var dataFAA = d3.nest()
-        .key(d => d["Event Date"])
-        .rollup(v => v.length, d => d["Event Date"])
+        .key(d => d["Local Event Date"])
+        .rollup(v => v.length, d => d["Local Event Date"])
         .object(faa);
 
     rectNTSB.filter(d => d in dataNTSB)
