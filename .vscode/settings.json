@@ -1,6 +1,7 @@
 {
     "jupyter.jupyterServerType": "local",
     "cSpell.words": [
+        "gjson",
         "ntsb"
     ]
 }

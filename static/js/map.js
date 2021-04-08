@@ -2,7 +2,6 @@
 d3.csv(
   "/static/airline_accident_data/airline_accidents.csv",
   function (tableData) {
-    console.log("test data vjhgkjhv", tableData);
     // Once we get a response, send the data.features object to the createFeatures function
     createFeatures(tableData);
   }
@@ -30,7 +29,6 @@ function createFeatures(airlinesData) {
   }
 
   function transformToGeoJson(data) {
-    // TODO: remove slice when ready
     const limit = data.filter((f) => f.Latitude && f.Longitude);
     return limit.map((d) => {
       return {
@@ -97,7 +95,7 @@ function createMap(airlines) {
   };
 
   // // Create our map, giving it the streetmap and earthquakes layers to display on load
-  var myMap = L.map("mapid", {
+  var myMap = L.map("map-element", {
     center: [0.0, 0.0],
     zoom: 2,
     layers: [satellitemap, airlines],
