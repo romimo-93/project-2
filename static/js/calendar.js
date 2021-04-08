@@ -1,3 +1,19 @@
+function hoverIn() {
+    anime({
+        targets: this,
+        rx: ["0%", "100%"],
+        scale: 3
+    });
+};
+
+function hoverOut() {
+    anime({
+        targets: this,
+        rx: ["100%", "0%"],
+        scale: 1
+    });
+}
+
 var div = d3.select("#ntsb")
     .node()
     .getBoundingClientRect();
@@ -105,13 +121,19 @@ function main(error, ntsb, faa) {
         .attr("fill", d => color(dataNTSB[d]))
         .append("title")
         .text(d => `${d}: ${dataNTSB[d]} Accidents`);
-    rectNTSB.on("click", gotoWorld);
+    rectNTSB
+        .on("mouseover", hoverIn)
+        .on("mouseout", hoverOut)
+        .on("click", gotoWorld);
 
     rectFAA.filter(d => d in dataFAA)
         .attr("fill", d => color(dataFAA[d]))
         .append("title")
         .text(d => `${d}: ${dataFAA[d]} Accidents`);
-    rectFAA.on("click", gotoWorld);
+    rectFAA
+        .on("mouseover", hoverIn)
+        .on("mouseout", hoverOut)
+        .on("click", gotoWorld);
 };
 
 function gotoWorld(date) {

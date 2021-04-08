@@ -33,10 +33,10 @@ def world_tour():
 
     return render_template("world_tour.html")
 
-@app.route("/table")
+@app.route("/map")
 def table():
 
-    return render_template("table.html")
+    return render_template("map.html")
 
 
 @app.route("/data_comparisons")
