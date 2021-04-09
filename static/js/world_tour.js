@@ -26,6 +26,11 @@ function gotoWorld(date) {
         .attr("cy", height / 2)
         .attr("r", projection.scale());
 
+    var tooltip = d3.select("#world-tour").append("div")
+        .attr("class", "tooltip")
+        .style("opacity", 0)
+        .style("width", 600);
+
     d3.json("/static/js/readme-world-110m.json", function (error, world) {
         var countries = topojson.object(world, world.objects.countries).geometries,
             i = -1,
@@ -35,24 +40,47 @@ function gotoWorld(date) {
             .data(countries)
             .enter().insert("path", ".graticule")
             .attr("class", "country")
-            .attr("d", path);
+            .attr("d", path)
+            .on("mouseover", function (d) {
+                var locations = subset.filter(row => row["Country"] === d.id).map(row => row["Location"]);
+                if (locations.length > 0) {
+                    var tip = "<h3>" + d.id + "</h3><p>" + locations + "</p>";
+                    tooltip.html(tip)
+                        .style("left", (d3.event.pageX) + "px")
+                        .style("top", (d3.event.pageY) + "px");
 
-        var locations = [];
+                    tooltip.transition()
+                        .duration(500)
+                        .style("opacity", 1);
+                } else {
+                    tooltip.html("");
+                }
+            });
+
+        var subset = [];
+        var countriesArr = [];
         var accidentArr = [];
 
         d3.csv("/static/airline_accident_data/airline_accidents.csv", (error, csv) => {
-            var subset = csv.filter(row => row["Event Date"] === date).map(row => row["Country"])
+            subset = csv.filter(row => row["Event Date"] === date);
+            //.map(row => [row["Country"], row["Location"]]);
+            // var subset = csv.filter(row => row["Event Date"] === date).map(function (row) { return { country = row["Country"] };});
+
+            // console.log(subset);
+
             if (subset.length > 0) {
-                locations = subset;
+                countriesArr = subset.map(row => row["Country"]);
             }
 
-            locations = Array.from(new Set(locations));
+            countriesArr = Array.from(new Set(countriesArr));
+            // console.log(countriesArr);
 
-            locations.forEach(loca => {
-                var cond = (element) => element.id.toUpperCase() == loca.toUpperCase();
+            countriesArr.forEach(countryName => {
+                var cond = (element) => element.id.toUpperCase() == countryName.toUpperCase();
+                // console.log("country:" + countryName + ", locations:" + subset.filter(row => row["Country"] === countryName).map(row => row["Location"]));
                 accidentArr.push(world.objects.countries.geometries.findIndex(cond));
             });
-        
+
             step();
         })
 
@@ -60,16 +88,16 @@ function gotoWorld(date) {
             if (++i >= accidentArr.length) {
                 i = 0;
             }
-            var location = accidentArr[i];
+            var countryIndex = accidentArr[i];
 
             country.transition()
-                .style("fill", function (d, j) { return j === location ? "red" : "#b8b8b8"; });
+                .style("fill", function (d, j) { return j === countryIndex ? "red" : "#b8b8b8"; });
 
             d3.transition()
                 .delay(250)
-                .duration(1250)
+                .duration(3250)
                 .tween("rotate", function () {
-                    var point = d3.geoCentroid(countries[location]),
+                    var point = d3.geoCentroid(countries[countryIndex]),
                         rotate = d3.interpolate(projection.rotate(), [-point[0], -point[1]]);
                     return function (t) {
                         projection.rotate(rotate(t));
