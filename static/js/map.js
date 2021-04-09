@@ -15,8 +15,15 @@ function createFeatures(airlinesData) {
     var popup =
       airlinesData[i].Location +
       "<br/>" +
+      airlinesData[i]["Event Date"] +
+      "<br/>" +
+      airlinesData[i]["Aircraft Category"] +
+      "<br/>" +
+      "<br/><b>Airport:</b>" +
       airlinesData[i]["Airport Name"] +
       "<br/><b>IATA/FAA:</b> " +
+      "<br/>" +
+      "<br/><b>Fatalities:</b>" +
       airlinesData[i]["Total Fatal Injuries"] +
       "<br/>";
 

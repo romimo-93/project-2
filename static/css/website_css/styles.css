@@ -4438,6 +4438,12 @@ input[type=button].btn-block {
   margin-bottom: 0;
 }
 
+.names {
+  color: darkcyan;
+  font-weight: bold;
+  font-size: 14px;
+}
+
 .card-text:last-child {
   margin-bottom: 0;
 }
@@ -10281,6 +10287,7 @@ body {
   .projects-section .project-text {
     padding: 5rem;
   }
+  
   .projects-section .project-text hr {
     border-color: #64a19d;
     border-width: 0.25rem;

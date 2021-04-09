@@ -67,7 +67,7 @@ function updateCalendar() {
     svg.append("text")
         .attr("transform", "translate(-6," + cellSize * 3.5 + ")rotate(-90)")
         .attr("font-family", "sans-serif")
-        .attr("font-size", 10)
+        .attr("font-size", 11)
         .attr("text-anchor", "middle")
         .text(d => d);
 
