@@ -36,8 +36,6 @@ function gotoWorld(date) {
             i = -1,
             n = countries.length;
 
-        // console.log(countries);
-
         var country = svg.selectAll(".country")
             .data(countries)
             .enter().insert("path", ".graticule")
@@ -84,7 +82,6 @@ function gotoWorld(date) {
             });
 
             step();
-
         })
 
         function step() {

@@ -1,61 +1,41 @@
-{% extends 'base.html' %}
-{% block head %}
-  {{ super() }}
-{% endblock %}
+{% extends 'base.html' %} {% block head %}
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+  integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+  crossorigin="anonymous"
+/>
+{{ super() }} {% endblock %}
 
 <!-- Content -->
 {% block content %}
-  <div class="hero text-center">
-    <h1>Airplane Wrecks</h1>
-    <p>Still safer then any other mode of transportation</p>
-  </div>
-  <div class="container">
-    <div class="row margin-top-50">
-      <div class="col-md-2">
-        <aside class="filters">
-          <div class="panel panel-default">
-            <div class="panel-heading">Filter Search</div>
-            <div class="panel-body">
-              <form>
-                <div class="form-group">
-                  <ul class="list-group" id="filters">
-                    <li class="filter list-group-item">
-                      <label for="date">Enter an Airport Code</label>
-                      <input class="form-control" id="datetime" type="text" placeholder="JFK">
-                    </li>
-                  </ul>
-                </div>
-                <button id="filter-btn" type="button" class="btn btn-default">Filter Table</button>
-              </form>
-            </div>
-          </div>
-        </aside>
-      </div>
-      <div class="col-md-10">
-        <div id="table-area" class="">
-          <table id="ufo-table" class="table table-striped">
-            <thead>
-              <tr>
-                <th class="table-head">Event Date</th>
-                <th class="table-head">Location</th>
-                <th class="table-head">Country</th>
-                <th class="table-head">Airport Code</th>
-                <th class="table-head">Airport Name</th>
-                <th class="table-head">Injury Severity</th>
-                <th class="table-head">Total Fatal Injuries</th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-{% endblock %}
 
+<!-- <div id='container'></div> -->
+<div class="chart"></div>
+<div id="mapid"></div>
+{% endblock %} {% block scripts %}
+<script src="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
+<script
+  src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+  integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+  crossorigin="anonymous"
+></script>
+<!-- D3 JavaScript -->
+<script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.3/d3.min.js"
+></script>
+<!-- API Key -->
+<script type="text/javascript" src="static/js/config.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://d3js.org/topojson.v1.min.js"></script>
+<script src="/static/js/table.js"></script>
 
-{% block scripts %}
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
-  <script src="https://d3js.org/d3.v4.min.js"></script>
-  <!-- <script src="/static/js/table.js"></script>   -->
 {% endblock %}

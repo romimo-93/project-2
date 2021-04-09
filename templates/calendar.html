@@ -6,13 +6,21 @@
 
 <!-- Content -->
 {% block content %}
-
-<div class= "col-6" id="ntsb"></div>
-
-<div class= "col-6" id="faa"></div>
-
+<div class="row">
+  <div class="col-6">
+    <h3 class="text-center mt-3">NTSB Accidents</h3>
+    <div id="ntsb"></div>
+  </div>
+  <div class="col-6">
+    <h3 class="text-center mt-3">FAA Accidents</h3>
+    <div class="mt-0 pt-0" id="faa"></div>
+  </div>
+</div>
 {% endblock %}
+
+<!-- Scripts -->
 {% block scripts %}
     <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="/static/js/anime.min.js"></script>
     <script src="/static/js/calendar.js"></script>
 {% endblock %}
