@@ -10343,3 +10343,8 @@ body {
 .footer {
   padding: 5rem 0;
 }
+
+#calendar-element {
+  max-height: 600px;
+  overflow: scroll;
+}
