@@ -112,6 +112,10 @@ function main(error, ntsb, faa) {
 
 function gotoWorld(date) {
     window.open("world_tour?date=" + date);
+//     d3.csv("/static/airline_accident_data/airline_accidents.csv", (error, csv) => {
+//         var subset = csv.filter(row => row["Event Date"] === date).map(row => row["Location"]);
+//         console.log(subset);
+//     })
 }
 
 
